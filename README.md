@@ -68,15 +68,6 @@ Distâncias: 9 + 2 + 6 = 17 km
 
 **Arquivo**: `index.html`, `script.js`
 
-**Recursos**:
-
-- ✅ Interface gráfica interativa
-- ✅ Edite a matriz de distâncias em tempo real
-- ✅ Adicione/remova pacotes dinamicamente
-- ✅ Configure capacidade e depósito
-- ✅ Visualize resultados das 3 fases
-- ✅ Sem dependências externas (Tailwind via CDN)
-
 **Como usar**:
 
 1. Abra `index.html` no navegador
@@ -88,13 +79,6 @@ Distâncias: 9 + 2 + 6 = 17 km
 ### 2. C++ (Versão Console)
 
 **Arquivo**: `Trabalho_Final.cpp`
-
-**Características**:
-
-- ✅ Implementação pura dos algoritmos
-- ✅ Saída no console
-- ✅ Valores pré-configurados para teste
-- ✅ Ideal para análise de complexidade
 
 **Como compilar e executar**:
 
@@ -142,18 +126,6 @@ Onde:
 - **V** = número de vértices no grafo
 - **m** = número de pacotes selecionados (m ≤ n)
 
-## 📁 Estrutura de Arquivos
-
-```
-Projeto_Final_Allan/
-├── README.md                  # Este arquivo
-├── index.html                 # Versão Web (Tailwind CSS)
-├── script.js                  # JavaScript - Algoritmos
-├── Trabalho_Final.cpp         # Versão C++ original
-├── Complexidade.txt           # Análise de complexidade
-└── Grafo_Trabalho_Final.png   # Diagrama do grafo
-```
-
 ## 🔧 Tecnologias
 
 ### Web
@@ -167,16 +139,6 @@ Projeto_Final_Allan/
 - **C++11** - Linguagem
 - **stdio.h** - I/O
 - **limits.h** - Constantes
-
-## 🎓 Conceitos Aprendidos
-
-✅ Programação Dinâmica (bottom-up)
-✅ Algoritmos Gulosos
-✅ Algoritmo de Dijkstra
-✅ Estruturas de Dados (grafo, vetor)
-✅ Análise de Complexidade
-✅ Implementação Web com JavaScript
-✅ Design Responsivo (Tailwind CSS)
 
 ## 📝 Exemplos de Uso
 
@@ -207,50 +169,3 @@ Fase 1: 4 pacotes selecionados (valor = 280)
 Fase 2: Ordenação por prazo
 Fase 3: Custo total = 35 km
 ```
-
-## 🚀 Como Testar
-
-### Web
-
-```
-1. Abrir index.html no navegador
-2. Alterar número de vértices (2-10)
-3. Editar matriz de distâncias
-4. Adicionar 3-5 pacotes
-5. Clicar "Executar"
-6. Analisar resultados
-```
-
-### C++
-
-```
-1. Compilar: g++ -o trabalho Trabalho_Final.cpp
-2. Executar: ./trabalho
-3. Analisar saída no console
-4. Modificar valores em main() conforme necessário
-5. Recompilar e testar
-```
-
-## 💡 Melhorias Possíveis
-
-- 🔄 Adicionar algoritmo A\* para rotas mais otimizadas
-- 📈 Gráfico visual do grafo e rota
-- 💾 Exportar resultados em PDF/CSV
-- 🎯 Validação de entrada mais robusta
-- ⚡ Usar heap para Dijkstra (O(E log V))
-- 🧬 Implementar algoritmo genético para otimização
-
-## 📚 Referências
-
-- [Dynamic Programming - GeeksforGeeks](https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-15/)
-- [Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
-- [Greedy Algorithms - MIT OpenCourseWare](https://ocw.mit.edu/)
-
-## 👤 Autor
-
-Trabalho Final - Algoritmos e Estrutura de Dados
-Novembro de 2025
-
----
-
-**Nota**: Este projeto foi desenvolvido como trabalho acadêmico para demonstrar a aplicação prática de algoritmos clássicos em um problema de otimização real.
