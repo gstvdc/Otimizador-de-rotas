@@ -1,0 +1,11 @@
+A seleção de pacotes via Programação Dinâmica tem complexidade: O(n⋅W)
+
+ordenação gulosa por prazo: O(n2)
+
+cálculo das rotas com Dijkstra, usando matriz de adjacência: O(m⋅V2)
+
+onde:
+W = Capacidade máximo do camihão
+n = Quantidade total de pacotes disponiveis
+V = Número de vértices
+m = Número de pacotes que realemnte vão ser entregues

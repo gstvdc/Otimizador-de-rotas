@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Otimizador de Rotas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gradient-to-br from-indigo-600 to-purple-700 min-h-screen p-4"
+  >
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-8">
+      <h1 class="text-4xl font-bold text-indigo-600 text-center mb-2">
+        🚚 Otimizador de Rotas
+      </h1>
+      <p class="text-center text-gray-600 mb-8">Dijkstra + DP + Guloso</p>
+
+      <!-- Grafo -->
+      <div class="mb-8 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+          1️⃣ Configurar Grafo
+        </h2>
+        <div class="flex gap-4 mb-4 flex-wrap">
+          <input
+            type="number"
+            id="numVertices"
+            value="6"
+            min="2"
+            max="10"
+            class="px-3 py-2 border-2 border-gray-300 rounded w-24"
+          />
+          <button
+            onclick="gerarGrafo()"
+            class="px-4 py-2 bg-indigo-600 text-white rounded font-semibold hover:bg-indigo-700"
+          >
+            Gerar Matriz
+          </button>
+        </div>
+        <div id="grafoMatrix" class="grid gap-2"></div>
+      </div>
+
+      <!-- Pacotes -->
+      <div class="mb-8 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+          2️⃣ Adicionar Pacotes
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
+          <input
+            type="number"
+            id="pacPeso"
+            value="3"
+            min="1"
+            placeholder="Peso"
+            class="px-3 py-2 border-2 border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="pacValor"
+            value="100"
+            min="1"
+            placeholder="Valor"
+            class="px-3 py-2 border-2 border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="pacPrazo"
+            value="1"
+            min="1"
+            placeholder="Prazo"
+            class="px-3 py-2 border-2 border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="pacDestino"
+            value="1"
+            min="0"
+            placeholder="Destino"
+            class="px-3 py-2 border-2 border-gray-300 rounded"
+          />
+          <button
+            onclick="adicionarPacote()"
+            class="col-span-2 md:col-span-1 px-4 py-2 bg-indigo-600 text-white rounded font-semibold hover:bg-indigo-700"
+          >
+            Adicionar
+          </button>
+        </div>
+        <table class="w-full text-sm">
+          <thead
+            class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white"
+          >
+            <tr>
+              <th class="px-3 py-2">#</th>
+              <th class="px-3 py-2">Peso</th>
+              <th class="px-3 py-2">Valor</th>
+              <th class="px-3 py-2">Prazo</th>
+              <th class="px-3 py-2">Destino</th>
+              <th class="px-3 py-2">Ação</th>
+            </tr>
+          </thead>
+          <tbody id="pacotesBody" class="divide-y"></tbody>
+        </table>
+      </div>
+
+      <!-- Config -->
+      <div class="mb-8 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">3️⃣ Configurações</h2>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2"
+              >Capacidade</label
+            >
+            <input
+              type="number"
+              id="capacidade"
+              value="10"
+              min="1"
+              class="w-full px-3 py-2 border-2 border-gray-300 rounded"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2"
+              >Depósito</label
+            >
+            <input
+              type="number"
+              id="deposito"
+              value="0"
+              min="0"
+              class="w-full px-3 py-2 border-2 border-gray-300 rounded"
+            />
+          </div>
+        </div>
+        <button
+          onclick="executarAlgoritmos()"
+          class="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded font-bold text-lg hover:shadow-lg"
+        >
+          Executar
+        </button>
+      </div>
+
+      <!-- Resultados -->
+      <div id="resultadosSection" style="display: none" class="space-y-6">
+        <h2 class="text-2xl font-bold text-gray-800">📊 Resultados</h2>
+        <div
+          class="p-4 bg-white border-l-4 border-indigo-600 rounded text-sm space-y-2"
+        >
+          <h3 class="font-bold text-indigo-600">
+            Fase 1: Programação Dinâmica
+          </h3>
+          <div id="resultado1"></div>
+        </div>
+        <div
+          class="p-4 bg-white border-l-4 border-purple-700 rounded text-sm space-y-2"
+        >
+          <h3 class="font-bold text-purple-700">Fase 2: Guloso (Prazo)</h3>
+          <div id="resultado2"></div>
+        </div>
+        <div
+          class="p-4 bg-white border-l-4 border-green-600 rounded text-sm space-y-2"
+        >
+          <h3 class="font-bold text-green-600">Fase 3: Dijkstra</h3>
+          <div id="resultado3"></div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
